@@ -34,7 +34,7 @@
 
         body {
             font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            background-color: #EFEEE9; /* Slightly darker outer bg for desktop contrast */
+            background-color: #EFEEE9; 
             color: var(--text-main);
             line-height: 1.5;
             display: flex;
@@ -63,18 +63,7 @@
             margin-bottom: 20px;
         }
 
-        .brand-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--primary-gold);
-            mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L19.5 6.33V15L12 19.33L4.5 15V6.33L12 2ZM12 4.31L6.5 7.48V13.82L12 17L17.5 13.82V7.48L12 4.31Z" fill="black"/></svg>') no-repeat center;
-            -webkit-mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L19.5 6.33V15L12 19.33L4.5 15V6.33L12 2ZM12 4.31L6.5 7.48V13.82L12 17L17.5 13.82V7.48L12 4.31Z" fill="black"/></svg>') no-repeat center;
-            mask-size: contain;
-            -webkit-mask-size: contain;
-            margin: 0 auto 16px auto;
-            opacity: 0.9;
-        }
-
+    
         .brand-name {
             font-size: 0.9rem;
             letter-spacing: 2px;
@@ -135,6 +124,83 @@
 
         .card-icon {
             font-size: 1.1rem;
+        }
+
+        /* --- [新增样式] 蜂箱身份与视频模块 --- */
+        
+        /* 1. 蜂箱身份卡片样式 */
+        .hive-identity-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .hive-info {
+            flex: 1; /* 左侧文字占满剩余空间 */
+        }
+
+        .hive-id {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .hive-yield-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-bottom: 2px;
+        }
+
+        .hive-yield-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .hive-yield-unit {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-left: 2px;
+        }
+
+        .hive-photo-frame {
+            width: 100px;
+            height: 100px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            background-color: #f0f0f0; /* 图片未加载时的底色 */
+            flex-shrink: 0; /* 防止图片被挤压 */
+            border: 2px solid #fff;
+        }
+
+        .hive-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 保证图片填满且不变形 */
+        }
+
+        /* 2. 视频容器样式 */
+        .video-wrapper {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #000;
+            position: relative;
+            /* 强制 16:9 比例 */
+            aspect-ratio: 16 / 9;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .video-player {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
         }
 
         /* --- INFO GRID --- */
@@ -259,7 +325,6 @@
             font-weight: 500;
         }
         
-        /* Utility for animation on load */
         .fade-in-up {
             animation: fadeInUp 0.8s ease-out forwards;
             opacity: 0;
@@ -270,6 +335,7 @@
         .delay-2 { animation-delay: 0.2s; }
         .delay-3 { animation-delay: 0.3s; }
         .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
 
         @keyframes fadeInUp {
             to {
@@ -284,11 +350,11 @@
 
     <div class="mobile-wrapper">
         <header class="header fade-in-up">
-    <img src="fengyun-logo.svg" alt="蜂耘 FengYun Logo" class="brand-logo">
-    <div class="brand-name">蜂耘 FengYun</div>
-    <h1 class="product-name">蜂耘山野蜜</h1>
-    <div class="slogan">From FengYun, Every Drop Traceable</div>
-</header>
+            <img src="fengyun-logo.svg" alt="蜂耘 FengYun Logo" class="brand-logo"> 
+            <div class="brand-name">蜂耘 FengYun</div>
+            <h1 class="product-name">蜂耘山野蜜</h1>
+            <div class="slogan">From FengYun, Every Drop Traceable</div>
+        </header>
 
         <main class="container">
             
@@ -309,24 +375,65 @@
                     </div>
                     <div class="info-item">
                         <label>原产地 Origin</label>
-                        <span>广州帽峰 • 纯净产区</span>
+                        <span>秦岭南麓 • 纯净产区</span>
                     </div>
                     <div class="info-item">
                         <label>生产批次 Batch</label>
-                        <span>FY-202512-A20</span>
+                        <span>FY-202512-A26</span>
                     </div>
                     <div class="info-item">
                         <label>生产时间 Production</label>
-                        <span>2025-12-20</span>
+                        <span>2025-12-26</span>
                     </div>
                     <div class="info-item">
                         <label>包装时间 Packed</label>
-                        <span>2025-12-20</span>
+                        <span>2025-12-26</span>
                     </div>
                 </div>
             </section>
 
             <section class="card fade-in-up delay-2">
+                <div class="card-header">
+                    <div class="card-title">
+                        <span class="card-icon">🏠</span> 蜂源身份信息
+                    </div>
+                </div>
+                
+                <div class="hive-identity-box">
+                    <div class="hive-info">
+                        <div class="hive-id">NO. FY-8802 号蜂箱</div>
+                        <div class="hive-yield-label">本蜂箱累计产蜜量</div>
+                        <div class="hive-yield-value">
+                            48.5 <span class="hive-yield-unit">kg</span>
+                        </div>
+                        <div style="font-size:0.75rem; color:#888; margin-top:6px;">蜂农：郭师傅 (20年经验)</div>
+                    </div>
+                    
+                    <div class="hive-photo-frame">
+                        <img src="hive.jpg" alt="蜂箱实景" class="hive-photo">
+                    </div>
+                </div>
+            </section>
+
+            <section class="card fade-in-up delay-3">
+                <div class="card-header">
+                    <div class="card-title">
+                        <span class="card-icon">🎥</span> 生态实景记录
+                    </div>
+                </div>
+                
+                <div class="video-wrapper">
+                    <video class="video-player" controls poster="hive.jpg">
+                        <source src="trace-video.mp4" type="video/mp4">
+                        您的浏览器不支持视频播放，请升级。
+                    </video>
+                </div>
+                <div class="data-meta">
+                    记录时间: 2025-12-20 | 地点: 秦岭三号基地
+                </div>
+            </section>
+
+            <section class="card fade-in-up delay-4">
                 <div class="card-header">
                     <div class="card-title">
                         <span class="card-icon">📶</span> 智能蜂箱环境数据
@@ -350,7 +457,7 @@
                 </div>
             </section>
 
-            <section class="card fade-in-up delay-3">
+            <section class="card fade-in-up delay-5">
                 <div class="safety-status">
                     <div class="status-icon">✓</div>
                     <div class="status-text">
@@ -362,7 +469,7 @@
 
         </main>
 
-        <footer class="footer fade-in-up delay-4">
+        <footer class="footer fade-in-up delay-5">
             <p>本页面由蜂耘智能蜂箱与溯源系统自动生成<br>真实记录从山野到舌尖的全过程</p>
             <div class="system-badge">蜂耘智能溯源系统 Ver 2.0</div>
         </footer>
@@ -370,4 +477,3 @@
 
 </body>
 </html>
-
